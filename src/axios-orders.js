@@ -1,7 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
+const { FIREBASE_URL } = require('./config/setting');
 
 const instance = axios.create({
-    baseURL: 'https://udemy-ng-http-ebb4c.firebaseio.com/',
+    baseURL: FIREBASE_URL,
     
 })
 export default instance;

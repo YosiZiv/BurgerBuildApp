@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import Aux from '../../hoc/Auxa/Aux';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -56,7 +55,7 @@ class BurgerBuilder extends Component {
         let burger = this.props.error ? <p>Ingredients cant be loaded</p>: <Spinner />;
         if(this.props.ings) {
         burger =  (
-        <Aux>
+        <React.Fragment>
           <Burger ingredients={this.props.ings} />
               <BuildControls 
                  ingredientAdded= {this.props.onIngredientAdded} 
@@ -67,7 +66,7 @@ class BurgerBuilder extends Component {
                  purchaseable={this.updatePurchaseState(this.props.ings)}
                   ordered= {this.purchaseHandler}
         />
-        </Aux> 
+             </React.Fragment>
         ); 
 
         orderSummary =  (
@@ -79,13 +78,13 @@ class BurgerBuilder extends Component {
         );
     }
         return (
-            <Aux>
+            <React.Fragment>
                 <Modal modalClosed={this.purchaseCanselHandler}
                 show={this.state.purchasing}>
                    {orderSummary}
                 </Modal>
                 {burger}
-            </Aux>
+                </React.Fragment>
         );
     }
 }
